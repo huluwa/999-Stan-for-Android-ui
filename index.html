@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Stan-for-android : Android library with various extensions to android views and various helpers, used at Label305 for app development">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Stan-for-android</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Label305/Stan-for-Android">View on GitHub</a>
+
+          <h1 id="project_title">Stan-for-android</h1>
+          <h2 id="project_tagline">Android library with various extensions to android views and various helpers, used at Label305 for app development</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Label305/Stan-for-Android/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Label305/Stan-for-Android/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="stan-for-android-" class="anchor" href="#stan-for-android-"><span class="octicon octicon-link"></span></a>Stan for Android <a href="https://travis-ci.org/Label305/Stan-for-Android"><img src="https://travis-ci.org/Label305/Stan-for-Android.svg?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>Stan is a toolkit library for Android which consists of the following modules:</p>
+
+<ul>
+<li><code>lib-analytics</code></li>
+<li><code>lib-async</code></li>
+<li><code>lib-core</code></li>
+<li><code>lib-geofencing</code></li>
+<li><code>lib-svg</code></li>
+<li><code>lib-widget</code></li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Add the following to your dependencies:</p>
+
+<pre><code>compile 'com.label305.stan:lib-analytics:x.x.x'
+compile 'com.label305.stan:lib-async:x.x.x'
+compile 'com.label305.stan:lib-geofencing:x.x.x'
+compile 'com.label305.stan:lib-svg:x.x.x'
+compile 'com.label305.stan:lib-utils:x.x.x'
+compile 'com.label305.stan:lib-widget:x.x.x'
+</code></pre>
+
+<p>Replace <code>x.x.x</code> with the latest version name. See <a href="https://github.com/Label305/Stan-for-Android/releases">the releases page</a>.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>The javadocs can be found <a href="http://label305.github.io/Stan-for-Android/javadoc/">here</a>.</p>
+
+<h2>
+<a name="modules" class="anchor" href="#modules"><span class="octicon octicon-link"></span></a>Modules</h2>
+
+<h3>
+<a name="analytics" class="anchor" href="#analytics"><span class="octicon octicon-link"></span></a>Analytics</h3>
+
+<p>The <code>lib-analytics</code> module provides a bridge between you and Google Analytics with various quick access functions.
+To use this class, initialize it on startup using <code>Analytics.init(Context, boolean)</code>, and add the following to your <code>strings.xml</code>, replacing the values:</p>
+
+<pre><code>&lt;string name="key_analytics"&gt;MY_ANALYTICS_KEY&lt;/string&gt;
+&lt;string name="key_analytics_debug"&gt;MY_DEBUG_ANALYTICS_KEY&lt;/string&gt; &lt;!-- optional --&gt;
+</code></pre>
+
+<p>The string <code>key_analytics_debug</code> is optional, and provides a way to send analytics events to a separate profile.</p>
+
+<h3>
+<a name="async" class="anchor" href="#async"><span class="octicon octicon-link"></span></a>Async</h3>
+
+<p>The <code>lib-async</code> module provides an <code>AsyncTask</code> which provides proper exception handling, and easy event handling.
+It is loosely based on RoboGuice's <code>AsyncTask</code>.</p>
+
+<p>The <code>ExponentialBackoffAsyncTask</code> provides a way to keep retrying the requests when an <code>Exception</code> occurs, up to a maximum number of times. When subclassing this class, override <code>shouldRetry(Exception, int)</code> to determine whether to retry the request. By default, this class only retries if an <code>IOException</code> is thrown, upto a maximum of 3 times.</p>
+
+<h3>
+<a name="geofencing" class="anchor" href="#geofencing"><span class="octicon octicon-link"></span></a>Geofencing</h3>
+
+<p>The <code>lib-geofencing</code> module provides easy geofencing utilities.</p>
+
+<h3>
+<a name="svg" class="anchor" href="#svg"><span class="octicon octicon-link"></span></a>SVG</h3>
+
+<p>The <code>lib-svg</code> module contains an <code>SvgImageView</code>, which can show SVG images. SVG images should be stored in the <code>raw</code> folder.</p>
+
+<h3>
+<a name="utils" class="anchor" href="#utils"><span class="octicon octicon-link"></span></a>Utils</h3>
+
+<p>The <code>lib-utils</code> module provides a couple of utility classes. The <code>Logger</code> class provides logging, but only if the application is in a debug state. To initialize this class, call <code>Logger.setIsDebug(boolean)</code>.</p>
+
+<h3>
+<a name="widget" class="anchor" href="#widget"><span class="octicon octicon-link"></span></a>Widget</h3>
+
+<p>The <code>lib-widget</code> module contains several extensions to Android's <code>View</code> classes to use custom fonts, and more.
+To use one of the <code>CustomFont</code> view classes, place the fonts in the <code>assets</code> directory, and add the following to your layout xml:</p>
+
+<pre><code>&lt;com.label305.stan.widget.CustomFontTextView
+    ...
+    xmlns:stan="http://schemas.android.com/apk/res-auto"
+    stan:font="myfont.ttf" /&gt;
+</code></pre>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2014 Label305 B.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Stan-for-android maintained by <a href="https://github.com/Label305">Label305</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
